@@ -80,4 +80,88 @@ INFO:     Started server process [14737]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 
+change the port
+VLLM_USE_MODELSCOPE=true vllm serve /media/f/T21/weights/Voxtral-Mini-3B-2507 --tokenizer_mode mistral --config_format mistral --load_format mistral --port 8080
+(voxtral) f@f:~$ VLLM_USE_MODELSCOPE=true vllm serve /media/f/T21/weights/Voxtral-Mini-3B-2507 --tokenizer_mode mistral --config_format mistral --load_format mistral^C
+(voxtral) f@f:~$ VLLM_USE_MODELSCOPE=true vllm serve /media/f/T21/weights/Voxtral-Mini-3B-2507 --tokenizer_mode mistral --config_format mistral --load_format mistral --port 8080
+INFO 09-20 20:27:58 [__init__.py:235] Automatically detected platform cuda.
+INFO 09-20 20:27:59 [api_server.py:1755] vLLM API server version 0.10.0
+INFO 09-20 20:27:59 [cli_args.py:261] non-default args: {'model_tag': '/media/f/T21/weights/Voxtral-Mini-3B-2507', 'port': 8080, 'model': '/media/f/T21/weights/Voxtral-Mini-3B-2507', 'tokenizer_mode': 'mistral', 'config_format': 'mistral', 'load_format': 'mistral'}
+`torch_dtype` is deprecated! Use `dtype` instead!
+ERROR 09-20 20:28:03 [config.py:133] Error retrieving safetensors: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/media/f/T21/weights/Voxtral-Mini-3B-2507'. Use `repo_type` argument if needed., retrying 1 of 2
+ERROR 09-20 20:28:05 [config.py:131] Error retrieving safetensors: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/media/f/T21/weights/Voxtral-Mini-3B-2507'. Use `repo_type` argument if needed.
+INFO 09-20 20:28:05 [config.py:3440] Downcasting torch.float32 to torch.bfloat16.
+INFO 09-20 20:28:05 [config.py:1604] Using max model len 32768
+INFO 09-20 20:28:05 [config.py:2434] Chunked prefill is enabled with max_num_batched_tokens=2048.
+/home/f/anaconda3/envs/voxtral/lib/python3.10/site-packages/mistral_common/tokens/tokenizers/tekken.py:337: FutureWarning: The attributed `special_token_policy` is deprecated and will be removed in 1.10.0. Please pass a special token policy explicitly to the relevant methods.
+  warnings.warn(
+INFO 09-20 20:28:08 [__init__.py:235] Automatically detected platform cuda.
+INFO 09-20 20:28:09 [core.py:572] Waiting for init message from front-end.
+INFO 09-20 20:28:09 [core.py:71] Initializing a V1 LLM engine (v0.10.0) with config: model='/media/f/T21/weights/Voxtral-Mini-3B-2507', speculative_config=None, tokenizer='/media/f/T21/weights/Voxtral-Mini-3B-2507', skip_tokenizer_init=False, tokenizer_mode=mistral, revision=None, override_neuron_config={}, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=32768, download_dir=None, load_format=mistral, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto,  device_config=cuda, decoding_config=DecodingConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_backend=''), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None), seed=0, served_model_name=/media/f/T21/weights/Voxtral-Mini-3B-2507, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=True, chunked_prefill_enabled=True, use_async_output_proc=True, pooler_config=None, compilation_config={"level":3,"debug_dump_path":"","cache_dir":"","backend":"","custom_ops":[],"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output","vllm.mamba_mixer2"],"use_inductor":true,"compile_sizes":[],"inductor_compile_config":{"enable_auto_functionalized_v2":false},"inductor_passes":{},"use_cudagraph":true,"cudagraph_num_of_warmups":1,"cudagraph_capture_sizes":[512,504,496,488,480,472,464,456,448,440,432,424,416,408,400,392,384,376,368,360,352,344,336,328,320,312,304,296,288,280,272,264,256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"cudagraph_copy_inputs":false,"full_cuda_graph":false,"max_capture_size":512,"local_cache_dir":null}
+INFO 09-20 20:28:09 [parallel_state.py:1102] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0, EP rank 0
+/home/f/anaconda3/envs/voxtral/lib/python3.10/site-packages/mistral_common/tokens/tokenizers/tekken.py:337: FutureWarning: The attributed `special_token_policy` is deprecated and will be removed in 1.10.0. Please pass a special token policy explicitly to the relevant methods.
+  warnings.warn(
+WARNING 09-20 20:28:10 [topk_topp_sampler.py:59] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+INFO 09-20 20:28:10 [gpu_model_runner.py:1843] Starting to load model /media/f/T21/weights/Voxtral-Mini-3B-2507...
+INFO 09-20 20:28:10 [gpu_model_runner.py:1875] Loading model from scratch...
+INFO 09-20 20:28:10 [cuda.py:290] Using Flash Attention backend on V1 engine.
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:01<00:00,  1.13s/it]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:01<00:00,  1.13s/it]
+
+INFO 09-20 20:28:11 [default_loader.py:262] Loading weights took 1.39 seconds
+INFO 09-20 20:28:12 [gpu_model_runner.py:1892] Model loading took 8.7223 GiB and 1.527456 seconds
+INFO 09-20 20:28:12 [gpu_model_runner.py:2380] Encoder cache will be initialized with a budget of 32768 tokens, and profiled with 1 audio items of the maximum feature size.
+WARNING 09-20 20:28:12 [registry.py:184] VoxtralProcessorAdapter did not return `BatchFeature`. Make sure to match the behaviour of `ProcessorMixin` when implementing custom processors.
+/home/f/anaconda3/envs/voxtral/lib/python3.10/site-packages/mistral_common/tokens/tokenizers/tekken.py:461: FutureWarning: Using the tokenizer's special token policy (0) is deprecated. It will be removed in 1.10.0. Please pass a special token policy explicitly. Future default will be SpecialTokenPolicy.IGNORE.
+  warnings.warn(
+INFO 09-20 20:28:19 [backends.py:530] Using cache directory: /home/f/.cache/vllm/torch_compile_cache/a17b06e5e4/rank_0_0/backbone for vLLM's torch.compile
+INFO 09-20 20:28:19 [backends.py:541] Dynamo bytecode transform time: 3.60 s
+INFO 09-20 20:28:22 [backends.py:161] Directly load the compiled graph(s) for dynamic shape from the cache, took 2.622 s
+INFO 09-20 20:28:23 [monitor.py:34] torch.compile takes 3.60 s in total
+INFO 09-20 20:28:23 [gpu_worker.py:255] Available KV cache memory: 8.63 GiB
+INFO 09-20 20:28:23 [kv_cache_utils.py:833] GPU KV cache size: 75,440 tokens
+INFO 09-20 20:28:23 [kv_cache_utils.py:837] Maximum concurrency for 32,768 tokens per request: 2.30x
+Capturing CUDA graph shapes: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 67/67 [00:02<00:00, 23.49it/s]
+INFO 09-20 20:28:26 [gpu_model_runner.py:2485] Graph capturing finished in 3 secs, took 1.66 GiB
+INFO 09-20 20:28:26 [core.py:193] init engine (profile, create kv cache, warmup model) took 14.74 seconds
+/home/f/anaconda3/envs/voxtral/lib/python3.10/site-packages/mistral_common/tokens/tokenizers/tekken.py:337: FutureWarning: The attributed `special_token_policy` is deprecated and will be removed in 1.10.0. Please pass a special token policy explicitly to the relevant methods.
+  warnings.warn(
+INFO 09-20 20:28:27 [loggers.py:141] Engine 000: vllm cache_config_info with initialization after num_gpu_blocks is: 4715
+INFO 09-20 20:28:27 [api_server.py:1818] Starting vLLM API server 0 on http://0.0.0.0:8080
+INFO 09-20 20:28:27 [launcher.py:29] Available routes are:
+INFO 09-20 20:28:27 [launcher.py:37] Route: /openapi.json, Methods: GET, HEAD
+INFO 09-20 20:28:27 [launcher.py:37] Route: /docs, Methods: GET, HEAD
+INFO 09-20 20:28:27 [launcher.py:37] Route: /docs/oauth2-redirect, Methods: GET, HEAD
+INFO 09-20 20:28:27 [launcher.py:37] Route: /redoc, Methods: GET, HEAD
+INFO 09-20 20:28:27 [launcher.py:37] Route: /health, Methods: GET
+INFO 09-20 20:28:27 [launcher.py:37] Route: /load, Methods: GET
+INFO 09-20 20:28:27 [launcher.py:37] Route: /ping, Methods: POST
+INFO 09-20 20:28:27 [launcher.py:37] Route: /ping, Methods: GET
+INFO 09-20 20:28:27 [launcher.py:37] Route: /tokenize, Methods: POST
+INFO 09-20 20:28:27 [launcher.py:37] Route: /detokenize, Methods: POST
+INFO 09-20 20:28:27 [launcher.py:37] Route: /v1/models, Methods: GET
+INFO 09-20 20:28:27 [launcher.py:37] Route: /version, Methods: GET
+INFO 09-20 20:28:27 [launcher.py:37] Route: /v1/responses, Methods: POST
+INFO 09-20 20:28:27 [launcher.py:37] Route: /v1/responses/{response_id}, Methods: GET
+INFO 09-20 20:28:27 [launcher.py:37] Route: /v1/responses/{response_id}/cancel, Methods: POST
+INFO 09-20 20:28:27 [launcher.py:37] Route: /v1/chat/completions, Methods: POST
+INFO 09-20 20:28:27 [launcher.py:37] Route: /v1/completions, Methods: POST
+INFO 09-20 20:28:27 [launcher.py:37] Route: /v1/embeddings, Methods: POST
+INFO 09-20 20:28:27 [launcher.py:37] Route: /pooling, Methods: POST
+INFO 09-20 20:28:27 [launcher.py:37] Route: /classify, Methods: POST
+INFO 09-20 20:28:27 [launcher.py:37] Route: /score, Methods: POST
+INFO 09-20 20:28:27 [launcher.py:37] Route: /v1/score, Methods: POST
+INFO 09-20 20:28:27 [launcher.py:37] Route: /v1/audio/transcriptions, Methods: POST
+INFO 09-20 20:28:27 [launcher.py:37] Route: /v1/audio/translations, Methods: POST
+INFO 09-20 20:28:27 [launcher.py:37] Route: /rerank, Methods: POST
+INFO 09-20 20:28:27 [launcher.py:37] Route: /v1/rerank, Methods: POST
+INFO 09-20 20:28:27 [launcher.py:37] Route: /v2/rerank, Methods: POST
+INFO 09-20 20:28:27 [launcher.py:37] Route: /scale_elastic_ep, Methods: POST
+INFO 09-20 20:28:27 [launcher.py:37] Route: /is_scaling_elastic_ep, Methods: POST
+INFO 09-20 20:28:27 [launcher.py:37] Route: /invocations, Methods: POST
+INFO 09-20 20:28:27 [launcher.py:37] Route: /metrics, Methods: GET
+INFO:     Started server process [82493]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
 

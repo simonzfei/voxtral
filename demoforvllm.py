@@ -2,16 +2,37 @@ from mistral_common.protocol.instruct.messages import TextChunk, AudioChunk, Use
 from mistral_common.audio import Audio
 from huggingface_hub import hf_hub_download
 
+
+
+import httpx
 from openai import OpenAI
 
-# Modify OpenAI's API key and API base to use vLLM's API server.
-openai_api_key = "EMPTY"
-openai_api_base = "http://<your-server-host>:8000/v1"
-
 client = OpenAI(
-    api_key=openai_api_key,
-    base_url=openai_api_base,
+    api_key="EMPTY",
+    base_url="http://localhost:8080/v1",
+    http_client=httpx.Client(trust_env=False)  # ignores ALL_PROXY/HTTP_PROXY/HTTPS_PROXY
 )
+#
+# (voxtral) f@f:/media/f/E/project/git/voxtral$ python demoforvllm.py
+# obama.mp3: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 4.88M/4.88M [00:07<00:00, 635kB/s]
+# bcn_weather.mp3: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 353k/353k [00:02<00:00, 127kB/s]
+# ==============================USER 1==============================
+# Which speaker is more inspiring? Why? How are they different from each other?
+#
+#
+#
+# Traceback (most recent call last):
+#   File "/media/f/E/project/git/voxtral/demoforvllm.py", line 33, in <module>
+#     response = client.chat.completions.create(
+#   File "/home/f/anaconda3/envs/voxtral/lib/python3.10/site-packages/openai/_utils/_utils.py", line 287, in wrapper
+#     return func(*args, **kwargs)
+#   File "/home/f/anaconda3/envs/voxtral/lib/python3.10/site-packages/openai/resources/chat/completions/completions.py", line 925, in create
+#     return self._post(
+#   File "/home/f/anaconda3/envs/voxtral/lib/python3.10/site-packages/openai/_base_client.py", line 1249, in post
+#     return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+#   File "/home/f/anaconda3/envs/voxtral/lib/python3.10/site-packages/openai/_base_client.py", line 1037, in request
+#     raise self._make_status_error_from_response(err.response) from None
+# openai.InternalServerError: Internal Server Error
 
 models = client.models.list()
 model = models.data[0].id
